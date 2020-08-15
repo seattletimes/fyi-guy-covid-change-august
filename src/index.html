@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <%= t.include("partials/_head.html", grunt.data.json) %>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_dataLayer.html") %>
+      <%= t.include("partials/_gtm.html") %>
+    <% } %>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <% if (json.project.production && !json.project.embedded) { %>
+      <%= t.include("partials/_gtmNoScript.html") %>
+    <% } %>
+    <responsive-child class="interactive">
+
+      <div class="graphic-hed">Positive test rate for COVID-19 dips in King County, but there are still some hot spots</div>
+
+      <div class="graphic-chatter">In 29 of the 48 Health Reporting Areas in King County, the rate of positive tests
+        from July 27 to August 10 was lower than in the previous two-week period. But some saw significant jumps &mdash; in particular,
+        two areas on the Eastside.</div>
+
+        <div style="text-align:center; margin-top: 15px;"><i>Click on a region below to see more details</i></div>
+      <!-- content goes here -->
+      <div class="buttonCon">
+        <!-- <div id="cases" class="button">Total cases</div> -->
+        <div id="pos_change" class="button">Point change in positivity rates</div>
+        <div id="tests_pos" class="button">Positivity rates July 27 - Aug. 10</div>
+      </div>
+
+      <div id="legendCon">
+        <div class="decrease">
+          <div class="legend">
+            <div class="color"></div>
+            <div class="number">
+              <span class="pos_change">-3.1 or greater</span>
+              <span class="tests_pos">0-2.9%</span>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="color"></div>
+            <div class="number">
+              <span class="pos_change">-3.0 to -1.6</span>
+              <span class="tests_pos">3.0-5.9%</span>
+            </div>
+          </div>
+          <div class="legend">
+            <div class="color"></div>
+            <div class="number">
+              <span class="pos_change">-1.5 to -0.1</span>
+              <span class="tests_pos">6.0-8.9%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="legend">
+          <div class="color"></div>
+          <div class="number">
+            <span class="pos_change">No change</span>
+            <span class="tests_pos">9.0-11.9%</span>
+          </div>
+        </div>
+
+
+        <div class="increase">
+        <div class="legend">
+          <div class="color lastBlock"></div>
+          <div class="number">
+            <span class="pos_change">0.1 to 1.5</span>
+          </div>
+        </div>
+
+
+        <div class="legend">
+          <div class="color lastBlock"></div>
+          <div class="number">
+            <span class="pos_change">1.6 to 3.0</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+      <div id="map" class="aspect-ratio-outer">
+        <div class="aspect-ratio-inner">
+
+          <leaflet-map zoom=9>
+            <tile-layer layer="cartoPositron"></tile-layer>
+          </leaflet-map>
+
+        </div>
+      </div>
+
+      <figcaption class="source-container">
+          <p class="data-source">Source: Public Health - Seattle & King County. Data from Aug. 10, 2020.</p>
+          <p class="art-credit">Lauren Flannery / The Seattle Times</p>
+      </figcaption>
+
+
+    </responsive-child>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_analytics.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
