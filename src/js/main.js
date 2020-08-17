@@ -23,7 +23,7 @@ const mapElement = document.querySelector("leaflet-map");
 
   map.scrollWheelZoom.disable();
 
-  map.setView(new L.LatLng(47.60, -122.2), zoomLevel);
+  map.setView(new L.LatLng(47.5, -122.2), zoomLevel);
 
   var focused = false;
 
